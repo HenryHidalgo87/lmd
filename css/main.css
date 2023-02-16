@@ -1,4 +1,6 @@
 /* HTML-DOC */
+@import url("normalize.css");
+
 * {
   padding: 0;
   margin: 0;
@@ -153,6 +155,8 @@ background-image: url(../img/wedding.png);
     padding-top: 18px;
     padding-left: 15px;
     padding-right: 15px;
+    width: 100%;
+    min-width: 330px;
 }
 
   @media(max-width: 990px){
