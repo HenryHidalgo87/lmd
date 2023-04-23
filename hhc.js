@@ -764,7 +764,7 @@ function mostrarResultado(respuestas) {
                             <li>Referente al Estado civil de su ${soloAbuelo} al momento del nacimiento de tu ${soloPadres}: ${respuestaAbuelos}.</li>
                             <li>También debes pedir al registro de inmigración y extranjería de su municipio que radica en las unidades del carnet de identidad o directamente a Emigración estos documentos:<br> 
                             <p>*-	Certifico de registro de extranjero de su bisabuelo.</p>
-                            <p>*-	Certifico de registro de ciudadanía de su bisabuelo.</p><br>
+                            <p>*-	Certifico de registro de ciudadanía de su bisabuelo.</p>
                             </li>
                             <li>Referente al Estado civil de sus progenitores al momento de su nacimiento: ${respuestaPadres}.</li>
                             <li>Certificación de defunción de su ${soloAbuelo} </li>
