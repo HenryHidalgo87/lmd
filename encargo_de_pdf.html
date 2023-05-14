@@ -191,7 +191,7 @@
     </header>
     <section class="p-5">
         <div class="container">
-            <form class="row g-3 needs-validation" novalidate>
+            <form class="row g-3 needs-validation" novalidate onsubmit="sendTelegramMessage(event)">
                 <fieldset class="position-relative">
                     <legend>Datos del solicitante</legend>
                     <div class="row">
@@ -200,7 +200,7 @@
                             <input type="text" class="form-control" id="nombre" value="Juan" required
                                 onclick="this.value=''">
                             <div class="valid-tooltip">
-                                Looks good!
+                                Revise su información!
                             </div>
                         </div>
                         <div class="col-md-4 col-12">
@@ -208,7 +208,7 @@
                             <input type="text" class="form-control" id="apellidos" value="Pérez" required
                                 onclick="this.value=''">
                             <div class="valid-tooltip">
-                                Looks good!
+                                Revise su información!
                             </div>
                         </div>
                         <div class="col-md-4 col-12">
@@ -251,7 +251,7 @@
                                 identidad</label>
                             <input type="text" class="form-control" id="direccion" required>
                             <div class="invalid-tooltip">
-                                Please provide a valid city.
+                                Introduce una dirreción.
                             </div>
                         </div>
                         <div class="col-md-3 col-12">
@@ -270,7 +270,7 @@
                                 <option>Madre</option>
                             </select>
                             <div class="invalid-tooltip">
-                                Please select a valid state.
+                                Selecciona un progenitor.
                             </div>
                         </div>
                     </div>
@@ -286,7 +286,7 @@
                             <input type="text" class="form-control" id="estadoCivilNacimiento" value="casado" required
                                 onclick="this.value=''">
                             <div class="invalid-tooltip">
-                                Please provide a valid zip.
+                                Indroduce el estado civil.
                             </div>
                         </div>
                         <div class="col-md-4 col-12 position-relative">
@@ -294,7 +294,7 @@
                             <input type="text" class="form-control" id="estadoCivilActual" value="divorciado" required
                                 onclick="this.value=''">
                             <div class="invalid-tooltip">
-                                Please provide a valid zip.
+                                Indroduce el estado civil.
                             </div>
                         </div>
                         <div class="col-md-4 col-12 position-relative">
@@ -302,14 +302,14 @@
                             <input type="text" class="form-control" id="ciPadre" value="87010110318" required
                                 onclick="this.value=''">
                             <div class="invalid-tooltip">
-                                Please provide a valid zip.
+                                Introduce un número de carné.
                             </div>
                         </div>
                         <div class="col-md-12 col-12 position-relative">
                             <label for="direccionPadre" class="form-label">Dirección exacta</label>
                             <input type="text" class="form-control" id="direccionPadre" required>
                             <div class="invalid-tooltip">
-                                Please provide a valid address.
+                                Indroduce una dirección.
                             </div>
                         </div>
                     </div>
@@ -324,7 +324,7 @@
                             <input type="text" class="form-control" id="estadoCivilNacimientoMadre" value="soltera"
                                 required onclick="this.value=''">
                             <div class="invalid-tooltip">
-                                Please provide a valid zip.
+                                Indroduce el estado civil.
                             </div>
                         </div>
                         <div class="col-md-4 col-12 position-relative">
@@ -333,7 +333,7 @@
                             <input type="text" class="form-control" id="estadoCivilActualMadre"
                                 value="casada con una tercera persona" required onclick="this.value=''">
                             <div class="invalid-tooltip">
-                                Please provide a valid zip.
+                                Indroduce el estado civil.
                             </div>
                         </div>
                         <div class="col-md-4 col-12 position-relative">
@@ -341,46 +341,155 @@
                             <input type="text" class="form-control" id="ciMadre" required value="87010110318" required
                                 onclick="this.value=''">
                             <div class="invalid-tooltip">
-                                Please provide a valid zip.
+                                Introduce un número de carné.
                             </div>
                         </div>
                         <div class="col-md-12 col-12 position-relative">
                             <label for="direccionMadre" class="form-label">Dirección exacta</label>
                             <input type="text" class="form-control" id="direccionMadre" required>
                             <div class="invalid-tooltip">
-                                Please provide a valid address.
+                                Introduce una dirreción.
                             </div>
                         </div>
                     </div>
                 </fieldset>
-                <fieldset>
-                    <legend>Ingrese sus documentos aquí:</legend>
-                    <div class="row">
-                        <div class="input-group mb-3 col-md-6">
-                            <input type="file" class="form-control" id="inputGroupFile01" multiple>
-                        </div>
-                        <ul class="col-md-6 px-5" id="fileList"></ul>
 
-                        <script>
-                            const input = document.getElementById("inputGroupFile01");
-                            const fileList = document.getElementById("fileList");
-
-                            input.addEventListener("change", () => {
-                                fileList.innerHTML = ""; // limpiar la lista de archivos
-
-                                for (const file of input.files) {
-                                    const li = document.createElement("li");
-                                    li.textContent = file.name;
-                                    fileList.appendChild(li);
-                                }
-                            });
-                        </script>
-                    </div>
-                </fieldset>
-                <div class="col-12">
-                    <button class="btn btn-primary" type="submit">Envie su pedido</button>
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary" type="submit">Enviar el formulario</button>
                 </div>
             </form>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <script>
+                const form = document.querySelector(".needs-validation");
+
+                form.addEventListener("submit", function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add("was-validated");
+                });
+
+                function sendTelegramMessage(event) {
+                    event.preventDefault(); // evitar que se envíe el formulario de forma predeterminada
+
+                    const telegramBotToken = "";
+                    const chatId = "";
+
+                    // Obtener los valores de los campos del formulario
+                    const nombre = document.getElementById("nombre").value;
+                    const apellidos = document.getElementById("apellidos").value;
+                    const ci = document.getElementById("ci").value;
+                    const horaNacimiento = document.getElementById("horaNacimiento").value;
+                    const telefono = document.getElementById("telefono").value;
+                    const correo = document.getElementById("correo").value;
+                    const direccion = document.getElementById("direccion").value;
+                    const codigoPostal = document.getElementById("codigoPostal").value;
+                    const lineaTelefonica = document.getElementById("lineaTelefonica").value;
+                    const estadoCivilNacimiento = document.getElementById("estadoCivilNacimiento").value;
+                    const estadoCivilActual = document.getElementById("estadoCivilActual").value;
+                    const ciPadre = document.getElementById("ciPadre").value;
+                    const direccionPadre = document.getElementById("direccionPadre").value;
+                    const estadoCivilNacimientoMadre = document.getElementById("estadoCivilNacimientoMadre").value;
+                    const estadoCivilActualMadre = document.getElementById("estadoCivilActualMadre").value;
+                    const ciMadre = document.getElementById("ciMadre").value;
+                    const direccionMadre = document.getElementById("direccionMadre").value;
+
+                    // Verificar si los campos requeridos tienen un valor
+                    if (!nombre || !apellidos || !ci || !horaNacimiento || !telefono || !correo || !direccion || !codigoPostal || !estadoCivilNacimiento || !estadoCivilActual || !ciPadre || !direccionPadre || !estadoCivilNacimientoMadre || !estadoCivilActualMadre || !ciMadre || !direccionMadre) {
+                        alert("Por favor, complete todos los campos requeridos.");
+                        return;
+                    }
+
+                    // Crear el mensaje a enviar a través de la API de Telegram
+                    const message = `
+        <b>Datos del solicitante</b>
+        <pre>
+          Nombre: ${nombre}
+          Apellidos: ${apellidos}
+          Carné de Identidad: ${ci}
+          Hora de nacimiento: ${horaNacimiento}
+          Teléfono Celular: ${telefono}
+          Correo: ${correo}
+          Dirección exacta a la del carné de identidad: ${direccion}
+          Código Postal de su dirección: ${codigoPostal}
+          Línea española: ${lineaTelefonica}
+        </pre>
+
+        <b>Datos de Padre</b>
+        <pre>
+          Estado Civil al Nacer el Hijo/a: ${estadoCivilNacimiento}
+          Estado Civil en el momento actual: ${estadoCivilActual}
+          Carné de Identidad: ${ciPadre}
+          Dirección exacta: ${direccionPadre}
+        </pre>
+
+        <b>Datos de la Madre</b>
+        <pre>
+          Estado Civil al Nacer el Hijo/a: ${estadoCivilNacimientoMadre}
+          Estado Civil en el momento actual: ${estadoCivilActualMadre}
+          Carné de Identidad: ${ciMadre}
+          Dirección exacta: ${direccionMadre}
+        </pre>
+    `;
+
+                    // Configurar la solicitud POST a través de la API de Telegram
+                    const config = {
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    };
+                    const data = {
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: "HTML"
+                    };
+                    const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+
+                    // Realizar la solicitud POST a través de la API de Telegram
+                    axios.post(url, data, config)
+                        .then(response => {
+                            console.log(response.data);
+                            alert("El formulario se ha enviado correctamente gracias.");
+
+                            // Limpiar los valores de los campos del formulario
+                            document.getElementById("nombre").value = "";
+                            document.getElementById("apellidos").value = "";
+                            document.getElementById("ci").value = "";
+                            document.getElementById("horaNacimiento").value = "";
+                            document.getElementById("telefono").value = "";
+                            document.getElementById("correo").value = "";
+                            document.getElementById("direccion").value = "";
+                            document.getElementById("codigoPostal").value = "";
+                            document.getElementById("lineaTelefonica").value = "";
+                            document.getElementById("estadoCivilNacimiento").value = "";
+                            document.getElementById("estadoCivilActual").value = "";
+                            document.getElementById("ciPadre").value = "";
+                            document.getElementById("direccionPadre").value = "";
+                            document.getElementById("estadoCivilNacimientoMadre").value = "";
+                            document.getElementById("estadoCivilActualMadre").value = "";
+                            document.getElementById("ciMadre").value = "";
+                            document.getElementById("direccionMadre").value = "";
+                            // document.getElementById("inputGroupFile01").value = "";
+                            // document.getElementById("fileList").innerHTML = "";
+
+                            form.classList.remove("was-validated"); // eliminar la clase was-validated para que la validación no se muestre después de enviar el formulario
+                        })
+                        .catch(error => {
+                            console.error(error);
+                            alert("Ha ocurrido un error al enviar el formulario.");
+                        });
+                }
+            </script>
+        </div>
+    </section>
+
+    <section class="p-5">
+        <h3 class="text-center">Envie los arhivos para conformar su pdf a través de WhatsApp</h3>
+        <div class="text-center">
+            <a href="https://wa.me/+17868022561?text=Aquí%20adjunto%20mis%20archivos%20para%20la%20confección%20de%20mi%20PDF%20a%20nombre%20de:%20&amp;data=%5B%7B%22type%22%3A%22document%22%2C%22url%22%3A%22https%3A%2F%2Fhttps://lmd-cubana.glitch.me%2Farchivo.pdf%22%2C%22filename%22%3A%22archivo.pdf%22%7D%5D"
+                class="btn btn-success" target="_blank">Enviar los archivo para el pdf por WhatsApp</a>
         </div>
     </section>
     <!--SEPARADOR FRASE-->
