@@ -100,3 +100,8 @@ footer {
 .modal-dialog {
   z-index: 1500;
 }
+
+.card-text i {
+  margin-right: 5px;
+  font-size: 1.2rem;
+}
