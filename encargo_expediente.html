@@ -359,22 +359,40 @@
                         </div>
                     </div>
                 </fieldset>
-                <fieldset>
-                    <legend>Seleccione su precio</legend>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="precio" id="flexRadioPrecio1" value="500">
-                        <label class="form-check-label" for="flexRadioPrecio1" check-label>
-                            Coste 500 MN
-                        </label>
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend class="h4">Seleccione su precio</legend>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="precio" id="flexRadioPrecio1"
+                                    value="500">
+                                <label class="form-check-label" for="flexRadioPrecio1" check-label>Coste 500 MN</label>
+                            </div>
+                        </fieldset>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="precio" id="flexRadioPrecio2" value="650"
-                            disabled>
-                        <label class="form-check-label" for="flexRadioPrecio2" check-label>
-                            Estoy en 0 lo quiero todo.
-                        </label>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="h4" for="selectAnexo">Selecciona tu opción:</label>
+                            <select class="form-control" id="selectAnexo">
+                                <option value="Anexo_I">Anexo I</option>
+                                <option value="Anexo_II">Anexo II</option>
+                                <option value="Anexo_III">Anexo III</option>
+                                <option value="Anexo_IV">Anexo IV</option>
+                            </select>
+                        </div>
                     </div>
-                </fieldset>
+                    <script>
+                        window.onload = function () {
+                            // Obtener el valor del parámetro de consulta "opcion" de la URL
+                            var opcionSeleccionada = new URLSearchParams(window.location.search).get("opcion");
+
+                            // Seleccionar la opción correspondiente en el select
+                            if (opcionSeleccionada) {
+                                document.getElementById("selectAnexo").value = opcionSeleccionada;
+                            }
+                        }
+                    </script>
+                </div>
 
                 <div class="col-12 text-center">
                     <button class="btn btn-primary" type="submit">Enviar el formulario</button>
@@ -429,40 +447,40 @@
 
                     // Crear el mensaje a enviar a través de la API de Telegram
                     const message = `
-        <b>Datos del solicitante</b>
-        <pre>
-          Nombre: ${nombre}
-          Apellidos: ${apellidos}
-          Carné de Identidad: ${ci}
-          Hora de nacimiento: ${horaNacimiento}
-          Teléfono Celular: ${telefono}
-          Correo: ${correo}
-          Dirección exacta a la del carné de identidad: ${direccion}
-          Código Postal de su dirección: ${codigoPostal}
-          Línea española: ${lineaTelefonica}
-        </pre>
+                            <b>Datos del solicitante</b>
+                            <pre>
+                                Nombre: ${nombre}
+                                Apellidos: ${apellidos}
+                                Carné de Identidad: ${ci}
+                                Hora de nacimiento: ${horaNacimiento}
+                                Teléfono Celular: ${telefono}
+                                Correo: ${correo}
+                                Dirección exacta a la del carné de identidad: ${direccion}
+                                Código Postal de su dirección: ${codigoPostal}
+                                Línea española: ${lineaTelefonica}
+                            </pre>
 
-        <b>Datos de Padre</b>
-        <pre>
-          Estado Civil al Nacer el Hijo/a: ${estadoCivilNacimiento}
-          Estado Civil en el momento actual: ${estadoCivilActual}
-          Carné de Identidad: ${ciPadre}
-          Dirección exacta: ${direccionPadre}
-        </pre>
+                            <b>Datos de Padre</b>
+                            <pre>
+                                Estado Civil al Nacer el Hijo/a: ${estadoCivilNacimiento}
+                                Estado Civil en el momento actual: ${estadoCivilActual}
+                                Carné de Identidad: ${ciPadre}
+                                Dirección exacta: ${direccionPadre}
+                            </pre>
 
-        <b>Datos de la Madre</b>
-        <pre>
-          Estado Civil al Nacer el Hijo/a: ${estadoCivilNacimientoMadre}
-          Estado Civil en el momento actual: ${estadoCivilActualMadre}
-          Carné de Identidad: ${ciMadre}
-          Dirección exacta: ${direccionMadre}
-        </pre>
+                            <b>Datos de la Madre</b>
+                            <pre>
+                                Estado Civil al Nacer el Hijo/a: ${estadoCivilNacimientoMadre}
+                                Estado Civil en el momento actual: ${estadoCivilActualMadre}
+                                Carné de Identidad: ${ciMadre}
+                                Dirección exacta: ${direccionMadre}
+                            </pre>
 
-        <b>Datos del pago</b>
-        <pre>
-            Pago: ${flexRadioPrecio}
-        </pre>
-    `;
+                            <b>Datos del pago</b>
+                            <pre>
+                                Pago: ${flexRadioPrecio}
+                            </pre>
+                            `;
 
                     // Configurar la solicitud POST a través de la API de Telegram
                     const config = {
@@ -518,7 +536,7 @@
     </section>
 
     <section class="p-3">
-        <h3 class="text-center">Envie los arhivos para conformar su pdf a través de WhatsApp</h3>
+        <h3 class="text-center">Envie los arhivos para conformar su expediente a través de WhatsApp</h3>
         <div class="text-center">
             <a href="https://wa.me/+17868022561?text=Aquí%20adjunto%20mis%20archivos%20para%20la%20confección%20de%20mi%20PDF%20a%20nombre%20de:%20&amp;data=%5B%7B%22type%22%3A%22document%22%2C%22url%22%3A%22https%3A%2F%2Fhttps://lmd-cubana.glitch.me%2Farchivo.pdf%22%2C%22filename%22%3A%22archivo.pdf%22%7D%5D"
                 class="btn btn-success" target="_blank">Enviar los archivo para el pdf por WhatsApp</a>
