@@ -187,7 +187,7 @@
                                             const chatId = "";
                                             const name = document.getElementById("name").value;
                                             const email = document.getElementById("email").value;
-                                            const message = `Nuevo mensaje de contacto:\nNombre: ${name}\nEmail: ${email}`;
+                                            const message = `Nuevo custionario cliente:\nNombre: ${name}\nEmail: ${email}`;
 
                                             const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
@@ -341,7 +341,7 @@
                 //si la cookie no existe, ejecutar el script y crear la cookie
                 console.log("Script ejecutado.");
                 Cookies.set('script_ejecutado', 'true', { expires: 1 }); // la cookie expirará en 1 día
-                var src = "hhc.js";
+                var src = "hhc_clientes.js";
                 document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
             } else {
                 console.log("Script omitido.");

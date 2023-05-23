@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Encargo de Expediente - LMD Cubana</title>
+    <title>Citas legalizaciones - LMD Cubana</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="index,follow,archive" name="robots">
     <meta name="description"
@@ -127,6 +127,9 @@
                             </li>
                             <li><a href="/#contact" class="dropdown-item">Servicios de obtención de literales
                                     españolas</a></li>
+                            <li><a href="/cita_legalizaciones.html" class="dropdown-item">Encargo de cita de
+                                    legalización</a>
+                            </li>
                             <li><a href="/encuesta_clientes.html" class="dropdown-item" data-toggle="modal"
                                     data-target="#verificarCodigoModal" type="button">Código de Verificación</a></li>
                         </ul>
@@ -186,11 +189,9 @@
     </hearder>
     <header class="bg-light">
         <div class="container py-5">
-            <h1 class="h1 text-danger">Podemos cumplimentar su expediente por usted</h1>
-            <p><strong>Incluye:</strong>
-                <li>Llenado del Anexo</li>
-                <li>Llenado de la hoja declaratoria de datos</li>
-                <li>Le decimos el orden de sus documentos</li>
+            <h1 class="h1 text-danger">Podemos gestionar una cita para legalizaciones en CLAIM o CONABI</h1>
+            <p><strong>Nota:</strong>
+                <li>No tenemos convenios con el MINREX.</li>
             </p>
             <span class="h5">Formulario de encargo.</span>
         </div>
@@ -199,7 +200,7 @@
         <div class="container">
             <form class="row g-3 needs-validation" novalidate onsubmit="sendTelegramMessage(event)">
                 <fieldset class="position-relative">
-                    <legend>Datos del solicitante</legend>
+                    <legend>Datos del solicitante de la cita</legend>
                     <div class="row">
                         <div class="col-md-4 col-12">
                             <label for="nombre" class="form-label">Nombre</label>
@@ -230,13 +231,6 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-12">
-                            <label for="horaNacimiento" class="form-label">Hora de nacimiento</label>
-                            <input type="time" class="form-control" id="horaNacimiento" required>
-                            <div class="invalid-tooltip">
-                                Introduce la hora de nacimiento.
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12">
                             <label for="telefono" class="form-label">Teléfono Celular</label>
                             <input type="text" class="form-control" id="telefono" value="+53 53010203" required
                                 onclick="this.value=''">
@@ -252,6 +246,18 @@
                                 Introduce su email.
                             </div>
                         </div>
+                        <div class="col-md-3 col-12">
+                            <label for="lineaTelefonica" class="form-label">De que entidad lo quiere</label>
+                            <select class="form-select" id="lineaTelefonica" required>
+                                <option selected disabled value="">Escoja...</option>
+                                <option>CONABI</option>
+                                <option>CLAIM</option>
+                                <option>No tengo preferencia</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Selecciona un progenitor.
+                            </div>
+                        </div>
                         <div class="col-md-6 col-12">
                             <label for="direccion" class="form-label">Dirección exacta a la del carné de
                                 identidad</label>
@@ -260,133 +266,29 @@
                                 Introduce una dirreción.
                             </div>
                         </div>
-                        <div class="col-md-3 col-12">
-                            <label for="codigoPostal" class="form-label">Código Postal de su dirección</label>
-                            <input type="text" class="form-control" id="codigoPostal" value="10500" required
-                                onclick="this.value=''">
-                            <div class="invalid-tooltip">
-                                Introduce su Código Postal.
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12">
-                            <label for="lineaTelefonica" class="form-label">Línea española</label>
-                            <select class="form-select" id="lineaTelefonica" required>
-                                <option selected disabled value="">Escoja...</option>
-                                <option>Padre</option>
-                                <option>Madre</option>
-                            </select>
-                            <div class="invalid-tooltip">
-                                Selecciona un progenitor.
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-                <hr>
 
-                <fieldset>
-                    <legend>Datos de Padre</legend>
-                    <div class="row">
-                        <div class="col-md-4 col-12 position-relative">
-                            <label for="estadoCivilNacimiento" class="form-label">Estado Civil al Nacer el
-                                Hijo/a</label>
-                            <input type="text" class="form-control" id="estadoCivilNacimiento" value="casado" required
-                                onclick="this.value=''">
-                            <div class="invalid-tooltip">
-                                Indroduce el estado civil.
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12 position-relative">
-                            <label for="estadoCivilActual" class="form-label">Estado Civil en el momento actual</label>
-                            <input type="text" class="form-control" id="estadoCivilActual" value="divorciado" required
-                                onclick="this.value=''">
-                            <div class="invalid-tooltip">
-                                Indroduce el estado civil.
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12 position-relative">
-                            <label for="ciPadre" class="form-label">Carné de Identidad</label>
-                            <input type="text" class="form-control" id="ciPadre" value="87010110318" required
-                                onclick="this.value=''">
-                            <div class="invalid-tooltip">
-                                Introduce un número de carné.
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-12 position-relative">
-                            <label for="direccionPadre" class="form-label">Dirección exacta</label>
-                            <input type="text" class="form-control" id="direccionPadre" required>
-                            <div class="invalid-tooltip">
-                                Indroduce una dirección.
-                            </div>
-                        </div>
                     </div>
                 </fieldset>
                 <hr>
-                <fieldset>
-                    <legend>Datos de la Madre</legend>
-                    <div class="row">
-                        <div class="col-md-4 col-12 position-relative">
-                            <label for="estadoCivilNacimientoMadre" class="form-label">Estado Civil al Nacer el
-                                Hijo/a</label>
-                            <input type="text" class="form-control" id="estadoCivilNacimientoMadre" value="soltera"
-                                required onclick="this.value=''">
-                            <div class="invalid-tooltip">
-                                Indroduce el estado civil.
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12 position-relative">
-                            <label for="estadoCivilActualMadre" class="form-label">Estado Civil en el momento
-                                actual</label>
-                            <input type="text" class="form-control" id="estadoCivilActualMadre"
-                                value="casada con una tercera persona" required onclick="this.value=''">
-                            <div class="invalid-tooltip">
-                                Indroduce el estado civil.
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12 position-relative">
-                            <label for="ciMadre" class="form-label">Carné de Identidad</label>
-                            <input type="text" class="form-control" id="ciMadre" value="87010110318" required
-                                onclick="this.value=''">
-                            <div class="invalid-tooltip">
-                                Introduce un número de carné.
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-12 position-relative">
-                            <label for="direccionMadre" class="form-label">Dirección exacta</label>
-                            <input type="text" class="form-control" id="direccionMadre" required>
-                            <div class="invalid-tooltip">
-                                Introduce una dirreción.
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
                 <div class="row p-3">
                     <div class="col-md-6">
                         <fieldset>
-                            <legend class="h4">Seleccione su precio</legend>
+                            <legend>Seleccione su precio</legend>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="precio" id="flexRadioPrecio1"
-                                    value="500" required>
-                                <div class="invalid-tooltip">
-                                    Marca una opción.
-                                </div>
-                                <label class="form-check-label" for="flexRadioPrecio1" check-label>Coste 500 MN</label>
+                                    value="3000" required>
+                                <label class="form-check-label" for="flexRadioPrecio1" check-label>
+                                    CONABI 3000 MN
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="precio" id="flexRadioPrecio2"
+                                    value="5000" required>
+                                <label class="form-check-label" for="flexRadioPrecio2" check-label>
+                                    CLAIM 5000 MN
+                                </label>
                             </div>
                         </fieldset>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="h4" for="selectAnexo">Selecciona tu opción:</label>
-                            <select class="form-control" id="selectAnexo" required>
-                                <option>Seleccione su Anexo</option>
-                                <option value="Anexo_I">Anexo I</option>
-                                <option value="Anexo_II">Anexo II</option>
-                                <option value="Anexo_III">Anexo III</option>
-                                <option value="Anexo_IV">Anexo IV</option>
-                            </select>
-                            <div class="invalid-tooltip">
-                                Escoja su Anexo.
-                            </div>
-                        </div>
                     </div>
                     <script>
                         window.onload = function () {
@@ -428,69 +330,38 @@
                     const nombre = document.getElementById("nombre").value;
                     const apellidos = document.getElementById("apellidos").value;
                     const ci = document.getElementById("ci").value;
-                    const horaNacimiento = document.getElementById("horaNacimiento").value;
                     const telefono = document.getElementById("telefono").value;
                     const correo = document.getElementById("correo").value;
                     const direccion = document.getElementById("direccion").value;
-                    const codigoPostal = document.getElementById("codigoPostal").value;
                     const lineaTelefonica = document.getElementById("lineaTelefonica").value;
-                    const estadoCivilNacimiento = document.getElementById("estadoCivilNacimiento").value;
-                    const estadoCivilActual = document.getElementById("estadoCivilActual").value;
-                    const ciPadre = document.getElementById("ciPadre").value;
-                    const direccionPadre = document.getElementById("direccionPadre").value;
-                    const estadoCivilNacimientoMadre = document.getElementById("estadoCivilNacimientoMadre").value;
-                    const estadoCivilActualMadre = document.getElementById("estadoCivilActualMadre").value;
-                    const ciMadre = document.getElementById("ciMadre").value;
-                    const direccionMadre = document.getElementById("direccionMadre").value;
                     const flexRadioPrecio1 = document.getElementById("flexRadioPrecio1");
                     const flexRadioPrecio2 = document.getElementById("flexRadioPrecio2");
                     const flexRadioPrecio = flexRadioPrecio1.checked ? flexRadioPrecio1.value : flexRadioPrecio2.checked ? flexRadioPrecio2.value : '';
-                    const selectAnexo = document.getElementById('selectAnexo');
-                    const valorSeleccionado = selectAnexo.value;
 
                     // Verificar si los campos requeridos tienen un valor
-                    if (!nombre || !apellidos || !ci || !horaNacimiento || !telefono || !correo || !direccion || !codigoPostal || !estadoCivilNacimiento || !estadoCivilActual || !ciPadre || !direccionPadre || !estadoCivilNacimientoMadre || !estadoCivilActualMadre || !ciMadre || !direccionMadre || !flexRadioPrecio || !selectAnexo) {
-                        alert("Por favor, complete todos los campos requeridos y seleccione una opción de precio.");
+                    if (!nombre || !apellidos || !ci || !telefono || !correo || !direccion || !flexRadioPrecio) {
+                        alert("Por favor, complete todos los campos requeridos y seleccione una opción de preciocorregido.");
                         return;
                     }
 
                     // Crear el mensaje a enviar a través de la API de Telegram
                     const message = `
-                            <b>Datos del solicitante</b>
-                            <pre>
-                                Nombre: ${nombre}
-                                Apellidos: ${apellidos}
-                                Carné de Identidad: ${ci}
-                                Hora de nacimiento: ${horaNacimiento}
-                                Teléfono Celular: ${telefono}
-                                Correo: ${correo}
-                                Dirección exacta a la del carné de identidad: ${direccion}
-                                Código Postal de su dirección: ${codigoPostal}
-                                Línea española: ${lineaTelefonica}
-                            </pre>
+        <b>Datos del solicitante para legalizar</b>
+        <pre>
+            Nombre: ${nombre}
+            Apellidos: ${apellidos}
+            Carné de Identidad: ${ci}
+            Teléfono Celular: ${telefono}
+            Correo: ${correo}
+            Dirección exacta a la del carné de identidad: ${direccion}
+            Entidad: ${lineaTelefonica}
+        </pre>
 
-                            <b>Datos de Padre</b>
-                            <pre>
-                                Estado Civil al Nacer el Hijo/a: ${estadoCivilNacimiento}
-                                Estado Civil en el momento actual: ${estadoCivilActual}
-                                Carné de Identidad: ${ciPadre}
-                                Dirección exacta: ${direccionPadre}
-                            </pre>
-
-                            <b>Datos de la Madre</b>
-                            <pre>
-                                Estado Civil al Nacer el Hijo/a: ${estadoCivilNacimientoMadre}
-                                Estado Civil en el momento actual: ${estadoCivilActualMadre}
-                                Carné de Identidad: ${ciMadre}
-                                Dirección exacta: ${direccionMadre}
-                            </pre>
-
-                            <b>Datos del pago</b>
-                            <pre>
-                                Anexo: ${valorSeleccionado}
-                                Pago: ${flexRadioPrecio}
-                            </pre>
-                            `;
+        <b>Datos del pago</b>
+        <pre>
+            Pago: ${flexRadioPrecio}
+        </pre>
+    `;
 
                     // Configurar la solicitud POST a través de la API de Telegram
                     const config = {
@@ -505,54 +376,48 @@
                     };
                     const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
 
-                    // Realizar la solicitud POST a través de la API de Telegram
+                    // Enviar el mensaje a través de la API de Telegram
                     axios.post(url, data, config)
                         .then(response => {
-                            console.log(response.data);
-                            alert("El formulario se ha enviado correctamente gracias.");
-
-                            // Limpiar los valores de los campos del formulario
-                            document.getElementById("nombre").value = "";
-                            document.getElementById("apellidos").value = "";
-                            document.getElementById("ci").value = "";
-                            document.getElementById("horaNacimiento").value = "";
-                            document.getElementById("telefono").value = "";
-                            document.getElementById("correo").value = "";
-                            document.getElementById("direccion").value = "";
-                            document.getElementById("codigoPostal").value = "";
-                            document.getElementById("lineaTelefonica").value = "";
-                            document.getElementById("estadoCivilNacimiento").value = "";
-                            document.getElementById("estadoCivilActual").value = "";
-                            document.getElementById("ciPadre").value = "";
-                            document.getElementById("direccionPadre").value = "";
-                            document.getElementById("estadoCivilNacimientoMadre").value = "";
-                            document.getElementById("estadoCivilActualMadre").value = "";
-                            document.getElementById("ciMadre").value = "";
-                            document.getElementById("direccionMadre").value = "";
-                            document.getElementById("flexRadioPrecio1").checked = false;
-                            document.getElementById("flexRadioPrecio2").checked = false;
-                            document.getElementById("selectAnexo").value = "";
-                            // document.getElementById("inputGroupFile01").value = "";
-                            // document.getElementById("fileList").innerHTML = "";
-
-                            form.classList.remove("was-validated"); // eliminar la clase was-validated para que la validación no se muestre después de enviar el formulario
+                            console.log(response);
+                            alert("El mensaje se ha enviado correctamente.");
                         })
                         .catch(error => {
-                            console.error(error);
-                            alert("Ha ocurrido un error al enviar el formulario.");
+                            console.log(error);
+                            alert("Ha ocurrido un error al enviar elmensaje. Por favor, inténtelo de nuevo más tarde.");
                         });
                 }
+
+                // Realizar la solicitud POST a través de la API de Telegram
+                axios.post(url, data, config)
+                    .then(response => {
+                        console.log(response.data);
+                        alert("El formulario se ha enviado correctamente gracias.");
+
+                        // Limpiar los valores de los campos del formulario
+                        document.getElementById("nombre").value = "";
+                        document.getElementById("apellidos").value = "";
+                        document.getElementById("ci").value = "";
+                        document.getElementById("telefono").value = "";
+                        document.getElementById("correo").value = "";
+                        document.getElementById("direccion").value = "";
+                        document.getElementById("lineaTelefonica").value = "";
+                        document.getElementById("flexRadioPrecio1").checked = false;
+                        document.getElementById("flexRadioPrecio2").checked = false;
+                        const flexRadioPrecio = '';
+                        // document.getElementById("inputGroupFile01").value = "";
+                        // document.getElementById("fileList").innerHTML = "";
+
+                        form.classList.remove("was-validated"); // eliminar la clase was-validated para que la validación no se muestre después de enviar el formulario
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        alert("Ha ocurrido un error al enviar el formulario.");
+                    });
             </script>
         </div>
     </section>
 
-    <section class="p-3">
-        <h3 class="text-center">Envie los arhivos para conformar su expediente a través de WhatsApp</h3>
-        <div class="text-center">
-            <a href="https://wa.me/+17868022561?text=Aquí%20adjunto%20mis%20archivos%20para%20la%20confección%20de%20mi%20PDF%20a%20nombre%20de:%20&amp;data=%5B%7B%22type%22%3A%22document%22%2C%22url%22%3A%22https%3A%2F%2Fhttps://lmd-cubana.glitch.me%2Farchivo.pdf%22%2C%22filename%22%3A%22archivo.pdf%22%7D%5D"
-                class="btn btn-success" target="_blank">Enviar los archivo para el pdf por WhatsApp</a>
-        </div>
-    </section>
     <!--SEPARADOR FRASE-->
     <section id="separadorfrase">
         <div class="container">
