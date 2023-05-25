@@ -1021,8 +1021,6 @@ function obtenerRespuestaPorEstadoCivil(
 
 function mostrarResultado(respuestas) {
     let elegible = false;
-    // Obtener el valor de correoElectronico desde las respuestas recibidas
-    //let correoElectronico;
 
     console.log('Respuestas recibidas:', respuestas);
     // Capturar la información de respuestas en una nueva variable
@@ -1030,14 +1028,19 @@ function mostrarResultado(respuestas) {
 
     const regex = /^[A-Z0-9]{13}$/;
 
+    // Crear un nuevo botón con el texto "Aceptar y Pagar"
+    const botonAceptar = document.createElement("button");
+    botonAceptar.textContent = "Aceptar y Pagar";
+
     const aceptaCondiciones = confirm(
-        'Para ver el resultado, debe aceptar los Términos Y Condiciones lea atentamente:\n\n1. El servicio incluirá una evaluación detallada de las condiciones requeridas para obtener la ciudadanía española por un valor de 100 MN.\n\n2. La responsabilidad por los datos correctos proporcionados es de la parte del usuario, así evitamos malentendidos futuros entre ustedes y nosotros.\n\n3. El usuario siempre será responsable de los datos proporcionados, nosotros simplemente realizamos una valoración basada en los datos que usted nos administra, sin tener ninguna responsabilidad por eventuales errores o desviaciones de la información.\n\n4. El interesado deberás estar en perfecta salud mental e integral para poder llenar el formulario.\n\n5. Tener más de 18 años.\n\n6. La agencia no se hace responsable de malos entendidos o situaciones que no estén contempladas en estos términos y condiciones, siempre y cuando se hayan cumplido con todas las leyes y regulaciones aplicables. En caso de conflicto o controversia, ambas partes se comprometen a buscar una solución amistosa y a cooperar plenamente con las autoridades competentes en caso de ser necesario.'
+        'Para ver el resultado, debe aceptar los Términos Y Condiciones lea atentamente:\n\n1. El servicio incluirá una evaluación detallada de las condiciones requeridas para obtener la ciudadanía española por un valor de 200 MN.\n\n2. La responsabilidad por los datos correctos proporcionados es de la parte del usuario, así evitamos malentendidos futuros entre ustedes y nosotros.\n\n3. El usuario siempre será responsable de los datos proporcionados, nosotros simplemente realizamos una valoración basada en los datos que usted nos administra, sin tener ninguna responsabilidad por eventuales errores o desviaciones de la información.\n\n4. El interesado deberás estar en perfecta salud mental e integral para poder llenar el formulario.\n\n5. Tener más de 18 años.\n\n6. La agencia no se hace responsable de malos entendidos o situaciones que no estén contempladas en estos términos y condiciones, siempre y cuando se hayan cumplido con todas las leyes y regulaciones aplicables. En caso de conflicto o controversia, ambas partes se comprometen a buscar una solución amistosa y a cooperar plenamente con las autoridades competentes en caso de ser necesario.'
     );
 
     if (aceptaCondiciones) {
         const metodoPago = prompt(
-            'Haga una transferencia de 100 MN a esta cuenta: 9200-1299-7101-5751 e introduzca el Nro. Transaccion aqui para comprobarlo:'
+            'Haga una transferencia de 200 MN a esta cuenta: 9200-1299-7101-5751 e introduzca el Nro. Transaccion aqui para comprobarlo:'
         );
+
         console.log(metodoPago); // Agregar esta línea para mostrar el valor introducido en la consola
         const valorIntroducido = metodoPago; // Guardar el valor introducido en una variable
         console.log(valorIntroducido); // Imprimir el valor guardado en la consola
@@ -4373,7 +4376,7 @@ function mostrarResultado(respuestas) {
                     }
 
                     // Actualiza el valor introducido con el nuevo valor del usuario
-                    valorIntroducido = prompt('Introduzca un código válido, Haga una transferencia de 100 MN a esta cuenta: 9200-1299-7101-5751 e introduzca el Nro. Transaccion aqui para comprobarlo:');
+                    valorIntroducido = prompt('Introduzca un código válido, Haga una transferencia de 200 MN a esta cuenta: 9200-1299-7101-5751 e introduzca el Nro. Transaccion aqui para comprobarlo:');
 
 
                     // Imprime el valor introducido en la consola
